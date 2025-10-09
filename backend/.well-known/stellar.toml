@@ -1,0 +1,10 @@
+
+# Network Information
+NETWORK_PASSPHRASE="Test SDF Network ; September 2015"
+
+# Your signing key (public key of the keypair you'll use to sign challenges)
+# Generate a new keypair specifically for this purpose - DO NOT use your funding account
+SIGNING_KEY="GC3RU25KRYWDKILB6C7UICQFQVERTX6VOU3C4PZFYZRI7XH3SC64VYUZ"
+
+# Version
+VERSION="1.0.0"
