@@ -1,6 +1,3 @@
-// Install dependencies:
-// npm install express stellar-sdk axios cors body-parser dotenv
-
 const express = require('express');
 const axios = require('axios');
 const StellarSdk = require('stellar-sdk');
@@ -15,7 +12,7 @@ app.use(bodyParser.json());
 
 // Configuration - set these in your .env file
 const HOME_DOMAIN = process.env.HOME_DOMAIN || 'anchor-stage.owlpay.com';
-const CLIENT_DOMAIN = process.env.CLIENT_DOMAIN || 'o55xnn-ip-220-133-81-12.tunnelmole.net';
+const CLIENT_DOMAIN = process.env.CLIENT_DOMAIN || 'w1lics-ip-220-133-81-12.tunnelmole.net'
 const CLIENT_SIGNING_KEY = process.env.CLIENT_SIGNING_KEY; // Your server's signing key
 
 if (!CLIENT_SIGNING_KEY) {

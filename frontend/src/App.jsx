@@ -1,25 +1,9 @@
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle, Loader2, ArrowRight, ArrowDownToLine, ArrowUpFromLine, Clock } from 'lucide-react';
-
-// Load Stellar SDK from CDN
-const loadStellarSDK = () => {
-  return new Promise((resolve, reject) => {
-    if (window.StellarSdk) {
-      resolve(window.StellarSdk);
-      return;
-    }
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/11.2.2/stellar-sdk.min.js';
-    script.onload = () => resolve(window.StellarSdk);
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-};
+import * as StellarSdk from '@stellar/stellar-sdk';
 
 export default function StellarSEP10Auth() {
-  React.useEffect(() => {
-    loadStellarSDK().catch(err => console.error('Failed to load Stellar SDK:', err));
-  }, []);
+  // SEP-10 State
   const [publicKey, setPublicKey] = useState('');
   const [secretKey, setSecretKey] = useState('');
   const [step, setStep] = useState(0);
@@ -89,7 +73,6 @@ export default function StellarSEP10Auth() {
 
     try {
       // Step 2: FE signs the transaction CLIENT-SIDE (NEVER send secret key to server!)
-      const StellarSdk = window.StellarSdk;
       
       // Determine network
       let network;
@@ -233,9 +216,9 @@ export default function StellarSEP10Auth() {
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h2 className="text-4xl font-bold text-white mb-2">
             Stellar SEP-10 Authentication
-          </h1>
+          </h2>
           <p className="text-blue-200 mb-8">
             Three-party signature flow with client_domain
           </p>
@@ -630,15 +613,7 @@ export default function StellarSEP10Auth() {
         <div className="mt-6 bg-white/5 backdrop-blur rounded-lg p-4 border border-white/10">
           {!authToken ? (
             <>
-              <p className="text-sm text-blue-200 mb-2">
-                <strong>Authentication Flow:</strong>
-              </p>
-              <ol className="text-xs text-blue-300 space-y-1 ml-4">
-                <li>1. Backend requests challenge from Anchor (Anchor signs)</li>
-                <li>2. Frontend signs transaction CLIENT-SIDE (secret never leaves browser)</li>
-                <li>3. Backend adds client_domain signature</li>
-                <li>4. Anchor verifies all signatures and returns JWT token</li>
-              </ol>
+       
             </>
           ) : (
             <>
