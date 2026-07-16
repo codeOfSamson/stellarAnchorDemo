@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // Configuration - set these in your .env file
 const HOME_DOMAIN = process.env.HOME_DOMAIN || "https://testanchor.stellar.org";
 const CLIENT_DOMAIN =
-  process.env.CLIENT_DOMAIN || "7d857520cafe.ngrok-free.app ";
+  process.env.CLIENT_DOMAIN || "7d857520cafe.ngrok-free.app";
 const CLIENT_SIGNING_KEY = process.env.CLIENT_SIGNING_KEY; // Your server's signing key
 
 if (!CLIENT_SIGNING_KEY) {

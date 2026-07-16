@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { AlertCircle, CheckCircle, Loader2, ArrowRight } from "lucide-react";
+import StellarSdk from "stellar-sdk";
+console.log(StellarSdk);
 
 // Load Stellar SDK from CDN
-const loadStellarSDK = () => {
-  return new Promise((resolve, reject) => {
-    if (window.StellarSdk) {
-      resolve(window.StellarSdk);
-      return;
-    }
-    const script = document.createElement("script");
-    script.src =
-      "https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/11.2.2/stellar-sdk.min.js";
-    script.onload = () => resolve(window.StellarSdk);
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-};
+// const loadStellarSDK = () => {
+//   return new Promise((resolve, reject) => {
+//     if (window.StellarSdk) {
+//       resolve(window.StellarSdk);
+//       return;
+//     }
+//     const script = document.createElement("script");
+//     script.src =
+//       "https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/11.2.2/stellar-sdk.min.js";
+//     script.onload = () => resolve(window.StellarSdk);
+//     script.onerror = reject;
+//     document.head.appendChild(script);
+//   });
+// };
 
 export default function StellarSEP10Auth() {
-  React.useEffect(() => {
-    loadStellarSDK().catch((err) =>
-      console.error("Failed to load Stellar SDK:", err)
-    );
-  }, []);
+  // React.useEffect(() => {
+  //   loadStellarSDK().catch((err) =>
+  //     console.error("Failed to load Stellar SDK:", err)
+  //   );
+  // }, []);
   const [publicKey, setPublicKey] = useState(
     "GA5MGK4QGVM5ZCFLAJEKRKECPMEI44SIP4XBI6JB5MFLQO5NDHU67VWX"
   );
@@ -78,7 +80,7 @@ export default function StellarSEP10Auth() {
 
     try {
       // Step 2: FE signs the transaction CLIENT-SIDE (NEVER send secret key to server!)
-      const StellarSdk = window.StellarSdk;
+      //const StellarSdk = window.StellarSdk;
 
       // Determine network
       let network;
